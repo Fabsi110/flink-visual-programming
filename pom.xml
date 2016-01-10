@@ -7,6 +7,9 @@
     <groupId>org.tu-berlin.de</groupId>
     <artifactId>flink-visual-programming</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>flink-skeleton</module>
+    </modules>
     <packaging>war</packaging>
     <properties>
         <jetty-version>9.3.6.v20151106</jetty-version>
