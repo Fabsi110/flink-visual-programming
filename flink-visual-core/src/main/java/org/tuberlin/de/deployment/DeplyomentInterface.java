@@ -1,5 +1,6 @@
 package org.tuberlin.de.deployment;
 
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -35,13 +36,15 @@ public interface DeplyomentInterface {
      * @param entryClass this is the class that contains the job graph. This class is essentially the entry point of
      *                   the flink job and contains only the calls of the user defined functions
      * @param clazzes this is a list of all user defined functions, each of those a class.
+     * @param deploy when this flag is true the compiled JAR will be deployed to a running Flink cluster
+     *               The configurations will be saved into config files (default) and can later in the project be overwritten by
+     *               a dialogue in the frontend.
      */
-    public void generateProjectJAR(String entryClass, List<String> clazzes);
+    public void generateProjectJAR(String entryClass, List<String> clazzes, boolean deploy);
 
     /**
-     * This function is called after the JAR was generated. It will deploy the jar to a running Flink instance.
-     * The configurations will be saved into config files (default) and can later in the project be overwritten by
-     * a dialogue in the frontend.
+     * This method is called after the JAR was generated. It will return a OutputStream that contains the JAR File.
+     * This is mainly for frontend functions to download the generated JAR.
      */
-    public void deployOnCluster();
+    public OutputStream getJarStream();
 }
